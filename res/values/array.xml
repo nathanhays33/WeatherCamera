@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="string_location">
+        <item name="1">Top</item>
+        <item name="7">Bottom</item>
+    </string-array>
+    <string-array name="string_location_values">
+        <item name="1">top</item>
+        <item name="7">bottom</item>
+    </string-array>
+     
+    <string-array name="units">
+        <item name="1">US Units</item>
+        <item name="7">Metric</item>
+    </string-array>
+    <string-array name="units_values">
+        <item name="1">us</item>
+        <item name="7">metric</item>
+    </string-array>
+    
+</resources>

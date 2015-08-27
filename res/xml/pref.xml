@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen 
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+           
+            <ListPreference
+            android:key="units"
+            android:entries="@array/units"
+            android:entryValues="@array/units_values"
+            android:title="Units"
+            android:defaultValue="1" />
+                  
+                  
+       <SwitchPreference
+        android:key="location"
+        android:title="Location"
+        android:defaultValue="false" />
+          
+       <SwitchPreference
+        android:key="temperature"
+        android:title="Temperature"
+        android:defaultValue="true" />
+       
+        <SwitchPreference
+        android:key="humidity"
+        android:title="Humidity"
+        android:defaultValue="false" />
+        
+        <SwitchPreference
+        android:key="wind"
+        android:title="Wind"
+        android:defaultValue="false" />
+        
+        <SwitchPreference
+        android:key="feels"
+        android:title="Feels Like"
+        android:defaultValue="false" />
+        
+        <SwitchPreference
+        android:key="visibility"
+        android:title="Visibility"
+        android:defaultValue="false" />
+        
+        <SwitchPreference
+        android:key="preciptation"
+        android:title="Today's Preciptation"
+        android:defaultValue="false" />
+        
+</PreferenceScreen>

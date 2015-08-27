@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:keepScreenOn="true"
+    android:background="@color/WHITE"  >
+
+        <FrameLayout
+            android:id="@+id/camera_preview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+        </FrameLayout>
+
+     <LinearLayout
+      android:id="@+id/speedBackgound"
+      android:layout_width="fill_parent"
+      android:layout_height="80dp"
+      android:layout_gravity="bottom"
+      android:orientation="horizontal" >
+
+         <ImageButton
+             android:id="@+id/menu"
+             android:layout_width="wrap_content"
+             android:layout_height="50dp"
+             android:layout_marginLeft="5dp"
+             android:layout_marginTop="5dp"
+             android:background="@null"
+             android:onClick="menu"
+             android:src="@drawable/ic_menu" />
+
+		   <ToggleButton
+		       android:id="@+id/togglebutton"
+		       android:layout_width="wrap_content"
+		       android:layout_height="wrap_content"
+		       android:layout_marginLeft="10dp"
+		       android:layout_marginTop="10dp"
+		       android:onClick="onToggleClicked"
+		       android:textOff="Flash off"
+		       android:textOn="Flash on" />
+
+		   <TextView
+		       android:id="@+id/temp"
+		       android:layout_width="wrap_content"
+		       android:layout_height="wrap_content"
+		       android:layout_marginLeft="10dp"
+		       android:textAppearance="?android:attr/textAppearanceLarge"
+		       android:textColor="@color/BLACK"
+		       android:textSize="15sp" />
+   
+	      <ImageView
+	          android:id="@+id/lastPic"
+	          android:layout_width="70dp"
+	          android:layout_height="70dp"
+	          android:layout_gravity="center"
+	          android:layout_marginLeft="10dp"
+	          android:layout_weight="0.68" />
+
+	      <Button
+	          android:layout_marginLeft="10dp"
+	          android:id="@+id/button_capture"
+	          android:layout_width="80dp"
+	          android:layout_height="80dp"
+	          android:background="@drawable/shutter_button"
+	          android:onClick="takePhoto" 
+	          android:layout_gravity="right"/>
+
+  </LinearLayout>
+  
+</LinearLayout>
