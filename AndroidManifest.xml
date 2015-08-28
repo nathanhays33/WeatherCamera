@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nathanhaze.weathercamera"
-    android:versionCode="10"
-    android:versionName="1.9" >
+    android:versionCode="20"
+    android:versionName="2.0" >
     
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.flash"
@@ -31,7 +31,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.NoTitleBar" >
+       android:theme="@style/MyTheme"  >
         <activity
             android:name="com.nathanhaze.weathercamera.MainActivity"
             android:label="@string/app_name"

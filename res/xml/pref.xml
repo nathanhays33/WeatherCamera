@@ -14,7 +14,9 @@
        <SwitchPreference
         android:key="location"
         android:title="Location"
-        android:defaultValue="false" />
+        android:defaultValue="false"
+        android:thumb="@drawable/apptheme_switch_inner_holo_light"
+        android:track="@drawable/apptheme_switch_track_holo_light" />
           
        <SwitchPreference
         android:key="temperature"

@@ -152,7 +152,7 @@ protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.camera_preview);
 
-    loadAd();
+ //   loadAd();
     locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
  // Register the listener with the Location Manager to receive location updates
     
@@ -194,7 +194,7 @@ protected void onCreate(Bundle savedInstanceState) {
 			return false;
 		}
     });
-    
+    /*
     
     // Prepare the Interstitial Ad
     interstitial = new InterstitialAd(MainActivity.this);
@@ -208,6 +208,7 @@ protected void onCreate(Bundle savedInstanceState) {
      // .addTestDevice("5E39C82DA23AB651436D5DA0866A484D")
             .build();
 
+   
     // Load ads into Interstitial Ads
     interstitial.loadAd(adRequest);
 
@@ -220,7 +221,7 @@ protected void onCreate(Bundle savedInstanceState) {
     });
     
     
-    
+    */
     
     
     
@@ -310,8 +311,10 @@ protected class retrieve_weatherTask extends AsyncTask<Void, String, String> {
 	HttpClient httpClient = new DefaultHttpClient();
 	HttpContext localContext = new BasicHttpContext();
 	
-	//Log.d("SITE", "http://api.wunderground.com/api/51cda8abeca78e10/conditions/q/" + Double.toString(location.getLatitude()) + "," +  Double.toString(location.getLongitude()) + ".xml");
-//	HttpGet httpGet = new HttpGet("http://api.wunderground.com/api/51cda8abeca78e10/conditions/q/37.776289,-122.395234.xml");
+	if(location == null){
+		  location = getLastKnownLocation();  
+		  if(location == null)return "Can not find location";
+	}
 	HttpGet httpGet = new HttpGet("http://api.wunderground.com/api/51cda8abeca78e10/conditions/q/" + Double.toString(location.getLatitude()) + "," + Double.toString(location.getLongitude()) + ".xml");
 	
 	try {
@@ -389,6 +392,7 @@ protected class retrieve_weatherTask extends AsyncTask<Void, String, String> {
 			temperature = sv ("//current_observation/temp_f", dest);
 	    }
 	}	
+	
 	return temperature;
 	}
 	
@@ -414,7 +418,7 @@ protected class retrieve_weatherTask extends AsyncTask<Void, String, String> {
 		if(temperature == ""){
 			temperature = "error";
 		}
-    	((TextView) findViewById(R.id.temp)).setText("Temp: " + temperature);
+    	((TextView) findViewById(R.id.temp)).setText(climate);
     	//((TextView) findViewById(R.id.wind)).setText("Wind: " + wind_mph + "mph (" + wind_kph + "kph)");
     }
 
@@ -712,9 +716,9 @@ protected void onPause() {
 protected void onStart() {
     super.onStart();  
   //  mCamera = getCameraInstance(); //was commented out
-    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+  EasyTracker.getInstance(this).activityStart(this);  // Add this method.
   
-	weather = new String[7];
+  weather = new String[7];
   if(sharedPrefs.getBoolean("location", false)){
 	  weather[0] = ("//display_location/full");
   }
@@ -771,7 +775,7 @@ protected void onStart() {
 		  precip_units ="in";
 	  }
   }
-  
+
   new retrieve_weatherTask().execute();
 }
 
