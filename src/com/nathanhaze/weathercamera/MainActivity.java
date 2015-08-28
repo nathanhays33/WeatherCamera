@@ -38,9 +38,7 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 import com.google.android.gms.ads.*;
-import com.google.android.gms.ads.AdRequest.Builder;
 import com.google.analytics.tracking.android.EasyTracker;
-import com.google.android.gms.ads.*;
 import com.nathanhaze.weathercamera.R;
 
 import android.annotation.TargetApi;
@@ -76,7 +74,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -198,18 +195,33 @@ protected void onCreate(Bundle savedInstanceState) {
 		}
     });
     
-
-    // Create the interstitial.
-    interstitial = new InterstitialAd(this);
+    
+    // Prepare the Interstitial Ad
+    interstitial = new InterstitialAd(MainActivity.this);
+    // Insert the Ad Unit ID
     interstitial.setAdUnitId("ca-app-pub-2377934805759836/3876184165");
 
-    // Create ad request.
-    AdRequest adRequest = new AdRequest.Builder().build();
+    // Request for Ads
+    AdRequest adRequest = new AdRequest.Builder()
+    // Add a test device to show Test Ads
+     // .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+     // .addTestDevice("5E39C82DA23AB651436D5DA0866A484D")
+            .build();
 
-    // Begin loading your interstitial.
+    // Load ads into Interstitial Ads
     interstitial.loadAd(adRequest);
 
-
+    // Prepare an Interstitial Ad Listener
+    interstitial.setAdListener(new AdListener() {
+        public void onAdLoaded() {
+            // Call displayInterstitial() function
+            displayInterstitial();
+        }
+    });
+    
+    
+    
+    
     
     
     try{
@@ -220,9 +232,9 @@ protected void onCreate(Bundle savedInstanceState) {
     }
     
     
-    if(location.getLatitude() == 0){
+    if(location == null){
     	//Log.d("LOCATION", Double.toString(location.getLatitude()));
-    	((TextView) findViewById(R.id.temp)).setText("Can't find location");    }
+    	((TextView) findViewById(R.id.temp)).setText("Can't find location? Enable GPS and restart app");    }
     else{
     	((TextView) findViewById(R.id.temp)).setText("Looking for weather...");    }
 
@@ -462,6 +474,11 @@ private PictureCallback mPicture = new PictureCallback() {
         if (android.os.Build.VERSION.SDK_INT>=android.os.Build.VERSION_CODES.HONEYCOMB) {
         	 BitmapFactory.Options opt = new BitmapFactory.Options();
         	 opt.inMutable = true;
+        	 
+        	 opt.inJustDecodeBounds = false;
+        	 opt.inPreferredConfig = Config.RGB_565;
+        	 opt.inDither = true;
+        	 
         	 myBitmap = BitmapFactory.decodeFile(pictureFile.getAbsolutePath(), opt);
         	 myBitmap = timestampItAndSave(myBitmap);
         }
@@ -603,7 +620,7 @@ private Bitmap timestampItAndSaveOLD(Bitmap toEdit){
 
     
    int pictureHeight = toEdit.getHeight();
-   int pictureWidth = toEdit.getWidth();
+  // int pictureWidth = toEdit.getWidth();
 
    int length = climate.length();
 
@@ -638,7 +655,7 @@ private Bitmap timestampItAndSave(Bitmap toEdit){
 
 	    
 	   int pictureHeight = toEdit.getHeight();
-	   int pictureWidth = toEdit.getWidth();
+	//   int pictureWidth = toEdit.getWidth();
 	
 	   int length = climate.length();
 	
